@@ -51,29 +51,61 @@ ul.t{list-style:none;padding:0;margin:0}ul.t li{padding:6px 0;border-bottom:1px 
 [contenteditable="true"]:focus{background:rgba(168,86,106,.14);box-shadow:0 0 0 2px var(--acc)}
 .pr[data-nm],#cl span[data-k2]{cursor:pointer}
 .hint{max-width:900px;margin:0 auto;padding:0 14px;color:var(--mut);font-size:13px}
+
+.ci,.mi{font:16px Jost,system-ui,sans-serif;color:var(--ink);background:transparent;border:1px solid transparent;border-radius:6px;padding:5px 7px;width:100%}
+.ci{min-width:140px}.mi{width:125px;min-width:100px;text-align:right}
+.ci:hover,.mi:hover{background:rgba(168,86,106,.08)}
+.ci:focus,.mi:focus{outline:none;background:rgba(168,86,106,.14);box-shadow:0 0 0 2px var(--acc)}
+.ci::placeholder{color:var(--mut);opacity:.7}
+.pair .ci{min-width:0}.pair small{display:flex;gap:8px;align-items:center;justify-content:space-between}
+.pair .ci.rl{color:var(--acc);font-size:14px;flex:1}
+td .rm{padding:1px 9px}
+.av{display:flex;align-items:center;gap:8px}.av .bar{flex:1}.pc{font-size:12px;color:var(--mut);min-width:34px}
+.bar i.over{background:var(--warn)}td.pend.neg{color:var(--warn)}
+button.add{border-color:var(--ink);color:var(--ink);margin-top:10px;padding:6px 14px;font-size:14px}
+.note.bad{color:var(--warn);font-weight:500}
+label.ck span{flex:1}
+.addrow{display:flex;gap:8px;margin:2px 0 12px}
+.addrow input{flex:1;min-width:0;font:16px Jost,system-ui,sans-serif;padding:8px 10px;border:1px dashed var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+.addrow input:focus{outline:2px solid var(--acc);outline-offset:1px;border-style:solid}
+.addrow button.add{margin-top:0}
+h3 .rm{margin-left:8px;vertical-align:middle}
+.glist{max-height:560px;overflow-y:auto;padding-right:2px}
+.grow{display:grid;grid-template-columns:minmax(0,1fr) 64px 78px auto;gap:6px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 8px;margin-bottom:6px}
+.grow .ci{min-width:0}.grow .gnum{text-align:center;padding:5px 2px}
+.gm{font-size:13px;color:var(--mut);text-align:right;white-space:nowrap}.gm.ok{color:var(--ok)}
+.ginfo{color:var(--mut);font-size:14px;align-self:center}
+@media (max-width:560px){.grow{grid-template-columns:64px minmax(0,1fr) auto}.grow .gname{grid-column:1/-1}.gm{text-align:left}}
 </style></head><body>
 <header><h1 id="h1t" data-ed="h1t">Naomi &amp; Raúl</h1><p class="sub" id="subt" data-ed="subt">10 de octubre de 2026 · Boda religiosa · Clásico y elegante</p><span class="count" id="cd"></span></header>
 <nav role="tablist" id="nav"></nav>
-<p class="hint">Toca cualquier texto para editarlo. En el checklist y en la lista de invitados de Mesas, toca dos veces para renombrar.</p>
+<p class="hint">Toca cualquier texto para editarlo. En el checklist y en la lista de invitados de Mesas, toca dos veces para renombrar. Usa los botones <b>+ Agregar</b> y <b>✕</b> para añadir o quitar líneas.</p>
 <main>
 <section id="resumen"><h2 id="h2a" data-ed="h2a">Resumen</h2><div class="grid" id="res" data-ed="res"></div>
 <h3 id="h3a" data-ed="h3a">Sesiones de fotos</h3><div class="grid" id="fotos" data-ed="fotos">
 <div class="box"><b>Save the date · sábado 6 de junio</b>Museo Ramón Cáceres. Raúl: camisa blanca, pantalón crema, zapatos marrón. Naomi: vestido blanco. Falta el carro de Isidro. Estado: enviado.</div>
 <div class="box"><b>Pre-boda · Misael Bencosme</b>Cabarete y Sosúa (playa y casa). Novia: vestido blanco y rojo, zapatos crema y dorados, ondas marcadas. Novio: traje negro, camisa de lino blanca y pantalón crema, zapatos negros y marrones.</div></div></section>
 
-<section id="presupuesto"><h2 id="h2b" data-ed="h2b">Presupuesto y pagos</h2><div class="grid" id="tot" data-ed="tot"></div>
-<h3>Proveedores en RD$</h3><div class="wrap"><table id="tb" data-ed="tb"></table></div>
-<h3>Proveedores en US$</h3><div class="wrap"><table id="tu" data-ed="tu"></table></div>
+<section id="presupuesto"><h2 id="h2b" data-ed="h2b">Presupuesto y pagos</h2><div class="grid" id="tot"></div>
+<h3>Proveedores en RD$</h3><div class="wrap"><table id="tb"></table></div><button type="button" class="rm add" data-add="rd">+ Agregar proveedor en RD$</button>
+<h3>Proveedores en US$</h3><div class="wrap"><table id="tu"></table></div><button type="button" class="rm add" data-add="us">+ Agregar proveedor en US$</button>
+<p class="note" id="bmsg" aria-live="polite"></p>
+<p class="note">En <b>Total</b> y <b>Abonado</b> puedes escribir operaciones: <b>386112+50000</b>, <b>15000*2</b>, <b>(1200-200)/2</b>. Si empiezas con un signo (<b>+10000</b> o <b>-2500</b>) se suma o se resta al valor que ya tenía. El pendiente y la barra de avance se actualizan solos. Enter para confirmar, Esc para cancelar.</p>
 <p class="note" id="notep1" data-ed="notep1">Con montos en el archivo pero sin claro a qué proveedor pertenecen (revísalos): decoración Rudy Zapata (abono 50%), hora loca Noel Cruceta, souvenirs TEMU, bizcocho y postres, vinil del letrero de Jael (Sauly Graphics), maquillaje del cortejo (Ley Beauty Spot, pendiente $20,000), logística del evento y pago de la iglesia (Samuel, parroquia). Cifras sueltas: $98,000, $40,000, $12,000, $25,000, $5,000, $16,000.</p>
 <p class="note" id="notep2" data-ed="notep2">Presupuesto total con fondo de emergencia: $800,000 – $1,000,000. Menú para 140 personas: ceviche peruano, pastelón de plátano maduro, quiche de maíz, pechuga al limón, cerdo en salsa de champiñones, arroz fiesta o plátano maduro con bacon, pan.</p></section>
 
 <section id="checklist"><h2 id="h2c" data-ed="h2c">Checklist</h2><p class="prog" id="prog"></p><div id="cl"></div></section>
 
-<section id="cortejo"><h2 id="h2d" data-ed="h2d">Cortejo</h2><div id="co" data-ed="co"></div><p class="note" id="notecort" data-ed="notecort">Caballeros: trajes negros.</p></section>
+<section id="cortejo"><h2 id="h2d" data-ed="h2d">Cortejo</h2><div id="co"></div><button type="button" class="rm add" data-add="co">+ Agregar línea al cortejo</button><p class="note" id="notecort" data-ed="notecort">Caballeros: trajes negros.</p></section>
 
-<section id="invitados"><h2 id="h2e" data-ed="h2e">Invitados y mesas</h2><div class="grid" id="invres" data-ed="invres">
-<div class="box"><b>Lista estimada</b>144 invitados</div><div class="box"><b>Mesas</b>13 o 14</div><div class="box"><b>Catering contratado</b>140 personas</div><div class="box"><b>Save the date</b>Enviado</div></div>
-<p class="note" id="invnote" data-ed="invnote">La lista completa y la distribución de mesas están en la pestaña Mesas. Grupos: Familia Collado-Guzmán, Familia Vargas-Martínez, Familia Rosario-Rodríguez, y amigos de cada lado. Antes de imprimir invitaciones conviene cerrar un solo total.</p></section>
+<section id="invitados"><h2 id="h2e" data-ed="h2e">Invitados y mesas</h2><div class="grid" id="invres"></div>
+<h3>Lista de invitados (por invitación)</h3>
+<div class="addrow"><input id="gn" placeholder="Nombre o familia/pareja" aria-label="Nombre del invitado"><input id="gc" class="ci" type="number" min="1" value="2" style="width:72px;flex:none;min-width:0;text-align:center" title="Personas en la invitación" aria-label="Personas"><button type="button" class="rm add" id="gadd">+ Agregar</button></div>
+<div class="tools"><input id="gq" placeholder="Buscar nombre"><select id="gfl"><option value="">Todos</option><option value="n">Sin mesa</option><option value="s">Con mesa</option></select><span class="ginfo" id="gcount"></span></div>
+<p class="note" id="gmsg" aria-live="polite" style="margin:0 0 8px"></p>
+<div class="glist" id="glist"></div>
+<p class="note" id="invnote2" data-ed="invnote2">Estos números se calculan solos con la lista real de invitados (se editan en la lista de esta misma pestaña). Catering contratado: 140 personas. Save the date: enviado.</p>
+<p class="note" id="invnote" data-ed="invnote">La distribución de mesas está en la pestaña Mesas; ahí solo se asigna cada invitación a su mesa. Grupos: Familia Collado-Guzmán, Familia Vargas-Martínez, Familia Rosario-Rodríguez, y amigos de cada lado. Antes de imprimir invitaciones conviene cerrar un solo total.</p></section>
 
 <section id="luna"><h2 id="h2f" data-ed="h2f">Luna de miel y casa</h2>
 <h3 id="h3b" data-ed="h3b">Punta Cana · 4 noches (lunes a viernes)</h3><p id="lunap" data-ed="lunap">El Beso Adults Only At Ocean El Faro, todo incluido. Incluye tour de buggies (3 h), una noche de discoteca y casi todos los restaurantes, menos Sakura. Presupuesto de luna de miel: $100,000.</p>
@@ -82,13 +114,14 @@ ul.t{list-style:none;padding:0;margin:0}ul.t li{padding:6px 0;border-bottom:1px 
 <li><b>Miércoles</b>Día de resort, almuerzo en Ocean Burger, cena mexicana en Margarita, piano bar</li>
 <li><b>Jueves</b>Piscina y atardecer, última gran cena en Dolce Vita, Route 66 de postre</li>
 <li><b>Viernes</b>Desayuno final en Pez Dama, check-out</li></ul>
-<h3 id="h3c" data-ed="h3c">Compras de la casa · presupuesto $200,000</h3><div class="wrap"><table id="tc" data-ed="tc"></table></div>
+<h3 id="h3c" data-ed="h3c">Compras de la casa · presupuesto $200,000</h3><div class="wrap"><table id="tc"></table></div><button type="button" class="rm add" data-add="hc">+ Agregar artículo</button>
+<p class="note" id="hcnote" data-ed="hcnote">Por comprar: colchón, sábanas, almohadas, cortinas, ollas, vasos, cubiertos, licuadora, airfryer, sofá, televisión y más.</p>
 <p class="note" id="lunanote" data-ed="lunanote">Vuelos a Orlando, Florida: $1,166.40. Presupuesto inicial total: $300,000.</p></section>
 <section id="mesas"><h2 id="h2g" data-ed="h2g">Distribución de mesas</h2>
 <p class="note">1) Toca un invitado de la lista. 2) Toca la mesa en el plano. Si no cabe, te avisa. Toca una mesa sin invitado elegido para ver quién está sentado y cambiar cuántos lugares tiene. Los números de mesa son solo para identificarlas aquí.</p>
 <div class="grid" id="stt"></div><div class="tools"><button class="rm" id="pre" style="border-color:var(--ink);color:var(--ink)">Usar 14 y 10 del plano</button><button class="rm" id="p12" style="border-color:var(--ink);color:var(--ink)">Poner 12 en todas</button></div>
 <div id="msg" aria-live="polite"></div><div class="plan" id="plan"></div>
-<div class="grid" style="align-items:start"><div><h3>Invitados (por invitación)</h3><div class="tools"><input id="q" placeholder="Buscar nombre"><select id="fl"><option value="">Todos</option><option value="n">Sin mesa</option><option value="s">Con mesa</option></select></div><div id="pl"></div></div>
+<div class="grid" style="align-items:start"><div><h3>Invitados (por invitación)</h3><div class="tools"><input id="q" placeholder="Buscar nombre"><select id="fl"><option value="">Todos</option><option value="n">Sin mesa</option><option value="s">Con mesa</option></select><button class="rm" id="addg" style="border-color:var(--ink);color:var(--ink)">+ Invitado</button></div><div id="pl"></div></div>
 <div><h3 id="dt">Detalle de mesa</h3><div id="det"><p class="note">Toca una mesa para ver quién está sentado y cambiar sus lugares.</p></div></div></div></section>
 </main>
 <script>
@@ -139,23 +172,47 @@ $("res").innerHTML=R.map(function(r){
 ).join("");
 var B=[["Buffet","Rosa Estrella",643520,386112],["Bebida","Buffet",59500,25000],["Coro de iglesia","Cecilia Caba",15000,7500],["Saxofón","Loriel Sax",15000,7500],["DJ","Joeury Duran",25000,15000],["Orquesta","Mitch Lopez",60000,30000],["Sonido","Rahudy",26250,13000]];
 var U=[["Fotografía","Misael Bencosme",1300,400],["Videografía","Araña Productions",1100,500]];
-function tab(id,rows,c){
-  var T=0,A=0;
-  var h='<thead><tr><th>Concepto</th><th>Proveedor</th><th class="n">Total</th><th class="n">Abonado</th><th class="n">Pendiente</th><th>Avance</th></tr></thead><tbody>';
-  rows.forEach(function(r){
-    T+=r[2];
-    A+=r[3];
-    h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td class="n">'+f(r[2],c)+'</td><td class="n">'+f(r[3],c)+'</td><td class="n">'+f(r[2]-r[3],c)+'</td><td><div class="bar"><i style="width:'+Math.round(r[3]/r[2]*100)+'%"></i></div></td></tr>'
+/* ===== Utilidades ===== */
+f=function(n,c){
+  n=+n||0;
+  return (n<0?"-":"")+(c||"")+Math.abs(n).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:2})
+};
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function num(s){var v=parseFloat(String(s).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v}
+function rd2(n){return Math.round(n*100)/100}
+function uid(){return Date.now().toString(36)+Math.floor(Math.random()*1296).toString(36)}
+
+/* Calculadora segura (sin eval): + - * / ( ) % y decimales */
+function calcExpr(s){
+  var i=0;
+  function E(){var v=T();while(s[i]=="+"||s[i]=="-"){var o=s[i++],r=T();v=o=="+"?v+r:v-r}return v}
+  function T(){var v=F();while(s[i]=="*"||s[i]=="/"){var o=s[i++],r=F();v=o=="*"?v*r:v/r}return v}
+  function F(){
+    if(s[i]=="-"){i++;return -F()}
+    if(s[i]=="+"){i++;return F()}
+    var v;
+    if(s[i]=="("){i++;v=E();if(s[i]!=")")throw 0;i++}
+    else{
+      var m=/^(\d+\.?\d*|\.\d+)/.exec(s.slice(i));
+      if(!m)throw 0;
+      v=parseFloat(m[1]);i+=m[1].length
+    }
+    while(s[i]=="%"){i++;v=v/100}
+    return v
   }
-  );
-  $(id).innerHTML=h+'</tbody><tfoot><tr><td colspan="2">Total</td><td class="n">'+f(T,c)+'</td><td class="n">'+f(A,c)+'</td><td class="n">'+f(T-A,c)+'</td><td>'+Math.round(A/T*100)+'%</td></tr></tfoot>';
-  return [T,A]
+  var r=E();
+  if(i!==s.length||!isFinite(r))throw 0;
+  return r
 }
-var a=tab("tb",B,"$"),u=tab("tu",U,"US$");
-$("tot").innerHTML=[["Contratado (RD$)",f(a[0],"$")],["Pagado (RD$)",f(a[1],"$")],["Pendiente (RD$)",f(a[0]-a[1],"$")],["Pendiente fotos y video",f(u[0]-u[1],"US$")]].map(function(x){
-  return '<div class="box"><b>'+x[0]+'</b><span style="font-size:22px;font-weight:500">'+x[1]+'</span></div>'
+/* Si empieza con + - * / se aplica sobre el valor actual (ej. +5000 suma un abono) */
+function ev(src,cur){
+  var s=String(src).replace(/US\$|RD\$|\$/gi,"").replace(/[,\s]/g,"").replace(/[x×]/gi,"*").replace(/÷/g,"/").replace(/[−–]/g,"-");
+  if(s==="")return 0;
+  if(!/^[0-9+\-*\/().%]+$/.test(s))return NaN;
+  if(/^[*\/+\-]/.test(s))s="("+cur+")"+s;
+  try{return rd2(calcExpr(s))}catch(e){return NaN}
 }
-).join("");
+
 var C=[["Fundamentos",[["Acta de confirmación",1],["Cédulas y pasaportes",1],["Curso prematrimonial",1],["Testigos legales",1],["Certificado médico",0],["Licencia de matrimonio civil",0],["Reservas y contratos firmados",0]]],
 ["Novia",[["Vestido principal (US$2,080)",1],["Velo tipo mantilla",1],["Zapatillas altas",1],["Vestido con movimiento o jumpsuit para el baile",0],["Lencería",0],["Joyería",0],["Ramo y liga",0],["Bata de preparación",0],["Pruebas de maquillaje y peinado",0],["Kit de emergencia",0]]],
 ["Novio",[["Traje",0],["Camisa, corbata o pajarita",0],["Zapatos y cinturón",0],["Reloj y boutonniere",0],["Kit básico",0]]],
@@ -163,72 +220,311 @@ var C=[["Fundamentos",[["Acta de confirmación",1],["Cédulas y pasaportes",1],[
 ["Papelería y logística",[["Save the date enviado",1],["Invitaciones y sobres",0],["Confirmación RSVP",0],["Seating chart y números de mesa",0],["Cronograma del día",0],["Ensayo general",0],["Plan B por lluvia",0],["Transporte de novios e invitados",0]]],
 ["Belleza",[["Rutina de skincare iniciada",1],["Tratamientos faciales",0],["Cabello",0],["Uñas",0],["Depilación",0],["Blanqueamiento dental",0]]],
 ["Lo que más se olvida",[["Cambio de ropa para después",1],["Cargadores y power bank",0],["Efectivo para propinas",0],["Snacks y agua para novios",0],["Zapatos cómodos para bailar",0],["Lista de contactos de proveedores",0],["Copia impresa del timeline",0],["Persona encargada de regalos",0],["Persona encargada del vestido y velo",0],["Kit de emergencia (aguja, hilo, curitas, pastillas)",0]]]];
-var st={
+var P=[["Novia y padre de la novia","Naomi Collado · Jorge Collado"],["Novio y madre del novio","Raúl Vargas · Patria Martínez"],["Madre de la novia y padre del novio","Alba Rosario · Franklyn Ramón Vargas"],["Madrina y padrino","Soraida Vargas · Jorge Luis Collado R."],["Dama de honor y hermano de la novia","Daniela Compres · Luis Alfonso Collado"],["Dama de honor y hermano del novio","María Guzmán · Isrrael Vargas"],["Dama y caballero de honor","Karoline Rodríguez · Ronel Rosario"],["Dama y caballero de honor","Franny Díaz · Andry Peralta"],["Dama y caballero de honor","Rohanna Rosario · Francis Camacho"],["Dama y caballero de honor","Livia Camacho · Norton Pérez"],["Dama solitaria y caballero de honor","Ronelly Rosario · Robert Arias"],["Niña de las flores","Tiffany Guzmán"],["Niño del letrero","Jael Guzmán"],["Niño de los anillos","Rodrigo Resek"]];
+var H=[["Colcha",3000],["Toallas",1800],["Platos",3000],["Estufa",26000],["Nevera",36500],["Lavadora",21995]];
+
+/* ===== Datos guardados (presupuesto, cortejo, casa) ===== */
+var PKEY="nrp",D=null;
+function migrate(){
+  /* Si ya habías editado tablas con la versión anterior, rescatamos esos textos */
+  var o={};
+  try{
+    var box=document.createElement("div");
+    [["tb","rd"],["tu","us"]].forEach(function(p){
+      var v=localStorage.getItem("edh:"+p[0]);
+      if(v===null)return;
+      box.innerHTML="<table>"+v+"</table>";
+      var rows=[].map.call(box.querySelectorAll("tbody tr"),function(tr){
+        var td=tr.children;
+        return td.length>=4?{c:td[0].textContent.trim(),p:td[1].textContent.trim(),t:num(td[2].textContent),a:num(td[3].textContent)}:null
+      }).filter(Boolean);
+      if(rows.length)o[p[1]]=rows
+    });
+    var v=localStorage.getItem("edh:tc");
+    if(v!==null){
+      box.innerHTML="<table>"+v+"</table>";
+      var hc=[].map.call(box.querySelectorAll("tbody tr"),function(tr){
+        var td=tr.children;
+        return td.length==2&&td[1].className.indexOf("n")>-1?{n:td[0].textContent.trim(),p:num(td[1].textContent)}:null
+      }).filter(Boolean);
+      if(hc.length)o.hc=hc;
+      var nt=box.querySelector("td.note");
+      if(nt&&localStorage.getItem("edh:hcnote")===null)localStorage.setItem("edh:hcnote",nt.innerHTML)
+    }
+    v=localStorage.getItem("edh:co");
+    if(v!==null){
+      box.innerHTML=v;
+      var co=[].map.call(box.querySelectorAll(".pair"),function(p){
+        var k=p.children;
+        return k.length?{r:k[0].textContent.trim(),a:k[1]?k[1].textContent.trim():"",b:k[2]?k[2].textContent.trim():""}:null
+      }).filter(Boolean);
+      if(co.length)o.co=co
+    }
+  }catch(e){}
+  return o
 }
-,txtOv={
+try{D=JSON.parse(localStorage.getItem(PKEY)||"null")}catch(e){D=null}
+if(!D||typeof D!=="object")D=migrate();
+D.rd=D.rd||B.map(function(r){return{c:r[0],p:r[1],t:r[2],a:r[3]}});
+D.us=D.us||U.map(function(r){return{c:r[0],p:r[1],t:r[2],a:r[3]}});
+D.hc=D.hc||H.map(function(x){return{n:x[0],p:x[1]}});
+D.co=D.co||P.map(function(p){var s=p[1].split(" · ");return{r:p[0],a:s[0]||"",b:s[1]||""}});
+D.rd.concat(D.us).forEach(function(r){r.t=+r.t||0;r.a=+r.a||0});
+D.hc.forEach(function(r){r.p=+r.p||0});
+function svD(){try{localStorage.setItem(PKEY,JSON.stringify(D))}catch(e){}}
+function bmsg(t,bad){var m=$("bmsg");m.textContent=t;m.className="note"+(bad?" bad":"")}
+
+/* ===== Presupuesto: tablas RD$ y US$ ===== */
+var TT={rd:{id:"tb",c:"$"},us:{id:"tu",c:"US$"}};
+var XBTN='<button type="button" class="rm" data-rmrow aria-label="Quitar línea">✕</button>';
+function rowH(kind,r,i){
+  var c=TT[kind].c;
+  return '<tr data-kind="'+kind+'" data-i="'+i+'">'
+   +'<td><input class="ci" data-k="c" value="'+esc(r.c)+'" placeholder="Concepto" aria-label="Concepto"></td>'
+   +'<td><input class="ci" data-k="p" value="'+esc(r.p)+'" placeholder="Proveedor" aria-label="Proveedor"></td>'
+   +'<td class="n"><input class="mi" data-k="t" value="'+esc(f(r.t,c))+'" autocomplete="off" aria-label="Total"></td>'
+   +'<td class="n"><input class="mi" data-k="a" value="'+esc(f(r.a,c))+'" autocomplete="off" aria-label="Abonado"></td>'
+   +'<td class="n pend"></td>'
+   +'<td><div class="av"><div class="bar"><i></i></div><span class="pc"></span></div></td>'
+   +'<td>'+XBTN+'</td></tr>'
 }
-;
+function drawTab(kind,np){
+  $(TT[kind].id).innerHTML='<thead><tr><th>Concepto</th><th>Proveedor</th><th class="n">Total</th><th class="n">Abonado</th><th class="n">Pendiente</th><th>Avance</th><th></th></tr></thead><tbody>'
+   +D[kind].map(function(r,i){return rowH(kind,r,i)}).join("")
+   +'</tbody><tfoot><tr><td colspan="2">Total</td><td class="n ft"></td><td class="n fa"></td><td class="n fp"></td><td colspan="2" class="fpc"></td></tr></tfoot>';
+  if(!np)paint()
+}
+function drawHc(np){
+  $("tc").innerHTML='<thead><tr><th>Artículo comprado o cotizado</th><th class="n">Precio</th><th></th></tr></thead><tbody>'
+   +D.hc.map(function(x,i){
+     return '<tr data-kind="hc" data-i="'+i+'"><td><input class="ci" data-k="n" value="'+esc(x.n)+'" placeholder="Artículo" aria-label="Artículo"></td><td class="n"><input class="mi" data-k="p" value="'+esc(f(x.p,"$"))+'" autocomplete="off" aria-label="Precio"></td><td>'+XBTN+'</td></tr>'
+   }).join("")
+   +'</tbody><tfoot><tr><td>Total</td><td class="n hct"></td><td></td></tr></tfoot>';
+  if(!np)paint()
+}
+function drawCo(){
+  $("co").innerHTML=D.co.map(function(p,i){
+    return '<div class="pair" data-kind="co" data-i="'+i+'"><small><input class="ci rl" data-k="r" value="'+esc(p.r)+'" placeholder="Rol (ej. Dama de honor)" aria-label="Rol"><button type="button" class="rm" data-rmrow aria-label="Quitar línea">Quitar</button></small>'
+     +'<input class="ci" data-k="a" value="'+esc(p.a)+'" placeholder="Nombre" aria-label="Nombre 1"><input class="ci" data-k="b" value="'+esc(p.b)+'" placeholder="Nombre" aria-label="Nombre 2"></div>'
+  }).join("")
+}
+function drawKind(k){
+  if(k=="rd"||k=="us")drawTab(k);else if(k=="hc")drawHc();else drawCo()
+}
+/* Recalcula pendiente, barras de avance, totales y resumen, sin tocar lo que estás escribiendo */
+function paint(){
+  var s={};
+  ["rd","us"].forEach(function(kind){
+    var T=TT[kind],tb=$(T.id),TO=0,AB=0;
+    D[kind].forEach(function(r){TO+=r.t;AB+=r.a});
+    [].forEach.call(tb.querySelectorAll("tbody tr"),function(tr){
+      var r=D[kind][+tr.dataset.i];
+      if(!r)return;
+      var pd=rd2(r.t-r.a),pc=r.t>0?Math.max(0,Math.min(100,Math.round(r.a/r.t*100))):0;
+      var pe=tr.querySelector(".pend");
+      pe.textContent=f(pd,T.c);
+      pe.className="n pend"+(pd<0?" neg":"");
+      var bi=tr.querySelector(".bar i");
+      bi.style.width=pc+"%";
+      bi.className=pd<0?"over":"";
+      tr.querySelector(".pc").textContent=pc+"%"
+    });
+    TO=rd2(TO);AB=rd2(AB);
+    tb.querySelector(".ft").textContent=f(TO,T.c);
+    tb.querySelector(".fa").textContent=f(AB,T.c);
+    tb.querySelector(".fp").textContent=f(rd2(TO-AB),T.c);
+    tb.querySelector(".fpc").textContent=(TO>0?Math.round(AB/TO*100):0)+"%";
+    s[kind]=[TO,AB]
+  });
+  $("tot").innerHTML=[["Contratado (RD$)",f(s.rd[0],"$")],["Pagado (RD$)",f(s.rd[1],"$")],["Pendiente (RD$)",f(rd2(s.rd[0]-s.rd[1]),"$")],["Pendiente fotos y video",f(rd2(s.us[0]-s.us[1]),"US$")]].map(function(x){
+    return '<div class="box"><b>'+x[0]+'</b><span style="font-size:22px;font-weight:500">'+x[1]+'</span></div>'
+  }).join("");
+  var e=$("tc").querySelector(".hct");
+  if(e)e.textContent=f(rd2(D.hc.reduce(function(a,x){return a+x.p},0)),"$")
+}
+
+var mainEl=document.querySelector("main");
+/* Al tocar un monto: se muestra el número simple, listo para escribir una operación */
+mainEl.addEventListener("focusin",function(e){
+  var el=e.target;
+  if(!(el.classList&&el.classList.contains("mi")))return;
+  var tr=el.closest("tr");
+  if(!tr)return;
+  var r=D[tr.dataset.kind][+tr.dataset.i];
+  if(!r)return;
+  el.dataset.raw=String(r[el.dataset.k]);
+  el.value=el.dataset.raw;
+  setTimeout(function(){try{el.select()}catch(_){}},0)
+});
+mainEl.addEventListener("focusout",function(e){
+  var el=e.target;
+  if(!(el.classList&&el.classList.contains("mi")))return;
+  var tr=el.closest("tr");
+  if(!tr)return;
+  var kind=tr.dataset.kind,r=D[kind][+tr.dataset.i];
+  if(!r)return;
+  var k=el.dataset.k,c=kind=="us"?"US$":"$";
+  if(el.dataset.raw!==undefined&&el.value.trim()!==el.dataset.raw){
+    var v=ev(el.value,r[k]);
+    if(isNaN(v)){bmsg("No entendí «"+el.value.trim()+"». Usa números y los signos + − × ÷ ( ) %.",true)}
+    else{r[k]=v;svD();bmsg("",false)}
+  }
+  delete el.dataset.raw;
+  el.value=f(r[k],c);
+  paint()
+});
+mainEl.addEventListener("keydown",function(e){
+  var el=e.target;
+  if(!(el.classList&&el.classList.contains("mi")))return;
+  if(e.key=="Enter"){e.preventDefault();el.blur()}
+  else if(e.key=="Escape"){el.value=el.dataset.raw||el.value;el.blur()}
+});
+/* Texto (concepto, proveedor, cortejo): se guarda al escribir */
+mainEl.addEventListener("input",function(e){
+  var el=e.target;
+  if(!(el.classList&&el.classList.contains("ci")))return;
+  var row=el.closest("[data-kind]");
+  if(!row)return;
+  var r=D[row.dataset.kind][+row.dataset.i];
+  if(!r)return;
+  r[el.dataset.k]=el.value;
+  svD()
+});
+/* Agregar y quitar líneas */
+mainEl.addEventListener("click",function(e){
+  var b=e.target.closest("button");
+  if(!b)return;
+  if(b.dataset.add){
+    var k=b.dataset.add;
+    D[k].push(k=="co"?{r:"",a:"",b:""}:k=="hc"?{n:"",p:0}:{c:"",p:"",t:0,a:0});
+    svD();drawKind(k);
+    var all=mainEl.querySelectorAll('[data-kind="'+k+'"]'),last=all[all.length-1],inp=last&&last.querySelector("input");
+    if(inp){inp.focus();try{inp.scrollIntoView({block:"center",behavior:"smooth"})}catch(_){}}
+  }
+  else if("rmrow" in b.dataset){
+    var row=b.closest("[data-kind]");
+    if(!row)return;
+    var kind=row.dataset.kind,i=+row.dataset.i,r=D[kind][i];
+    if(!r)return;
+    var lbl=(r.c||r.n||r.r||"")+"";
+    if(confirm("¿Quitar esta línea"+(lbl?" («"+lbl+"»)":"")+"?")){
+      D[kind].splice(i,1);
+      svD();drawKind(kind)
+    }
+  }
+});
+
+/* ===== Checklist con líneas nuevas ===== */
+var st={},txtOv={},X={},Dl={},NG=[];
 try{
   var stx=JSON.parse(localStorage.getItem("nr")||"{}");
   st=stx.ck||stx;
-  txtOv=stx.tx||{}
+  txtOv=stx.tx||{};
+  X=stx.x||{};
+  Dl=stx.dl||{};
+  NG=stx.ng||[]
 }
 catch(e){
 }
 function svCk(){
-  try{localStorage.setItem("nr",JSON.stringify({ck:st,tx:txtOv}))}catch(e){}
+  try{localStorage.setItem("nr",JSON.stringify({ck:st,tx:txtOv,x:X,dl:Dl,ng:NG}))}catch(e){}
 }
+function CG(){
+  var g=C.map(function(g,gi){
+    return{id:""+gi,name:g[0],base:1,items:g[1].map(function(it,i){return{k:gi+"-"+i,t:it[0],d:it[1]}})}
+  });
+  NG.forEach(function(n){g.push({id:"n"+n.id,name:n.name,base:0,items:[]})});
+  g.forEach(function(gr){
+    (X[gr.id]||[]).forEach(function(c){gr.items.push({k:gr.id+"-c"+c.id,t:c.t,d:0})})
+  });
+  return g
+}
+var lastAdd=null;
 function draw(){
   var t=0,dn=0,h="";
-  C.forEach(function(g,gi){
-    h+="<h3>"+g[0]+"</h3>";
-    g[1].forEach(function(it,i){
-      var k=gi+"-"+i,v=k in st?st[k]:it[1],tx=k in txtOv?txtOv[k]:it[0];
+  CG().forEach(function(g){
+    h+="<h3>"+esc(g.name)+(g.base?"":' <button type="button" class="rm" data-ngdel="'+g.id.slice(1)+'">Quitar categoría</button>')+"</h3>";
+    g.items.forEach(function(it){
+      if(Dl[it.k])return;
+      var v=it.k in st?st[it.k]:it.d,tx=it.k in txtOv?txtOv[it.k]:it.t;
       t++;
       dn+=v?1:0;
-      h+='<label class="ck'+(v?" d":"")+'"><input type="checkbox" data-k="'+k+'"'+(v?" checked":"")+'><span data-k2="'+k+'">'+tx+'</span></label>'
-    }
-    )
-  }
-  );
+      h+='<label class="ck'+(v?" d":"")+'"><input type="checkbox" data-k="'+it.k+'"'+(v?" checked":"")+'><span data-k2="'+it.k+'">'+esc(tx)+'</span><button type="button" class="rm" data-xdel="'+it.k+'" aria-label="Quitar">✕</button></label>'
+    });
+    h+='<div class="addrow"><input data-addin="'+g.id+'" placeholder="+ Agregar a «'+esc(g.name)+'»" aria-label="Nueva línea en '+esc(g.name)+'"><button type="button" class="rm add" data-addbtn="'+g.id+'">Agregar</button></div>'
+  });
+  h+='<div class="addrow" style="margin-top:20px"><button type="button" class="rm add" id="addcat">+ Nueva categoría</button></div>';
   $("cl").innerHTML=h;
-  $("prog").textContent=dn+" de "+t+" listos ("+Math.round(dn/t*100)+"%). Marca lo que vayas completando, o toca dos veces el texto para editarlo.";
-  [].forEach.call(document.querySelectorAll("#cl input"),function(c){
-    c.onchange=function(){
-      st[c.dataset.k]=c.checked;
-      svCk();
-      draw()
-    }
+  $("prog").textContent=dn+" de "+t+" listos ("+(t?Math.round(dn/t*100):0)+"%). Marca lo que vayas completando, o toca dos veces el texto para editarlo.";
+  if(lastAdd!==null){
+    var inp=$("cl").querySelector('[data-addin="'+lastAdd+'"]');
+    if(inp)inp.focus();
+    lastAdd=null
   }
-  );
-  [].forEach.call(document.querySelectorAll("#cl span[data-k2]"),function(sp){
-    sp.ondblclick=function(e){
-      e.preventDefault();
-      var nv=prompt("Editar:",sp.textContent);
-      if(nv!==null&&nv.trim()!==""){
-        txtOv[sp.dataset.k2]=nv.trim();
-        svCk();
-        draw()
-      }
-    }
+}
+function addItem(gid){
+  var inp=$("cl").querySelector('[data-addin="'+gid+'"]'),tx=inp?inp.value.trim():"";
+  if(!tx){if(inp)inp.focus();return}
+  (X[gid]=X[gid]||[]).push({id:uid(),t:tx});
+  svCk();
+  lastAdd=gid;
+  draw()
+}
+$("cl").addEventListener("change",function(e){
+  var c=e.target;
+  if(c.type=="checkbox"){st[c.dataset.k]=c.checked;svCk();draw()}
+});
+$("cl").addEventListener("dblclick",function(e){
+  var sp=e.target.closest("span[data-k2]");
+  if(!sp)return;
+  e.preventDefault();
+  var nv=prompt("Editar:",sp.textContent);
+  if(nv!==null&&nv.trim()!==""){
+    txtOv[sp.dataset.k2]=nv.trim();
+    svCk();
+    draw()
   }
-  )
-}
-draw();
-var P=[["Novia y padre de la novia","Naomi Collado · Jorge Collado"],["Novio y madre del novio","Raúl Vargas · Patria Martínez"],["Madre de la novia y padre del novio","Alba Rosario · Franklyn Ramón Vargas"],["Madrina y padrino","Soraida Vargas · Jorge Luis Collado R."],["Dama de honor y hermano de la novia","Daniela Compres · Luis Alfonso Collado"],["Dama de honor y hermano del novio","María Guzmán · Isrrael Vargas"],["Dama y caballero de honor","Karoline Rodríguez · Ronel Rosario"],["Dama y caballero de honor","Franny Díaz · Andry Peralta"],["Dama y caballero de honor","Rohanna Rosario · Francis Camacho"],["Dama y caballero de honor","Livia Camacho · Norton Pérez"],["Dama solitaria y caballero de honor","Ronelly Rosario · Robert Arias"],["Niña de las flores","Tiffany Guzmán"],["Niño del letrero","Jael Guzmán"],["Niño de los anillos","Rodrigo Resek"]];
-$("co").innerHTML=P.map(function(p){
-  var s=p[1].split(" · ");
-  return '<div class="pair"><small>'+p[0]+'</small><span>'+s[0]+'</span><span>'+(s[1]||"")+'</span></div>'
-}
-).join("");
-var H=[["Colcha",3000],["Toallas",1800],["Platos",3000],["Estufa",26000],["Nevera",36500],["Lavadora",21995]];
-$("tc").innerHTML='<thead><tr><th>Artículo comprado o cotizado</th><th class="n">Precio</th></tr></thead><tbody>'+H.map(function(x){
-  return '<tr><td>'+x[0]+'</td><td class="n">'+f(x[1],"$")+'</td></tr>'
-}
-).join("")+'</tbody><tfoot><tr><td>Total</td><td class="n">'+f(H.reduce(function(s,x){
-  return s+x[1]
-}
-,0),"$")+'</td></tr></tfoot><tbody><tr><td colspan="2" class="note">Por comprar: colchón, sábanas, almohadas, cortinas, ollas, vasos, cubiertos, licuadora, airfryer, sofá, televisión y más.</td></tr></tbody>';
+});
+$("cl").addEventListener("keydown",function(e){
+  if(e.key=="Enter"&&e.target.dataset&&e.target.dataset.addin!==undefined){
+    e.preventDefault();
+    addItem(e.target.dataset.addin)
+  }
+});
+$("cl").addEventListener("click",function(e){
+  var b=e.target.closest("button");
+  if(!b)return;
+  e.preventDefault();
+  if(b.dataset.xdel){
+    var k=b.dataset.xdel,sp=$("cl").querySelector('span[data-k2="'+k+'"]');
+    if(!confirm("¿Quitar «"+(sp?sp.textContent:"esta línea")+"» del checklist?"))return;
+    if(/^\d+-\d+$/.test(k))Dl[k]=1;
+    else{
+      var gid=k.slice(0,k.indexOf("-c"));
+      X[gid]=(X[gid]||[]).filter(function(c){return gid+"-c"+c.id!==k});
+      delete st[k];delete txtOv[k]
+    }
+    svCk();draw()
+  }
+  else if(b.dataset.addbtn!==undefined){addItem(b.dataset.addbtn)}
+  else if(b.dataset.ngdel){
+    var id=b.dataset.ngdel;
+    if(!confirm("¿Quitar esta categoría y todas sus líneas?"))return;
+    NG=NG.filter(function(n){return n.id!==id});
+    delete X["n"+id];
+    svCk();draw()
+  }
+  else if(b.id=="addcat"){
+    var nm2=prompt("Nombre de la nueva categoría:","");
+    if(nm2===null||nm2.trim()==="")return;
+    NG.push({id:uid(),name:nm2.trim()});
+    svCk();draw()
+  }
+});
+
+/* ===== Primer dibujo ===== */
+drawTab("rd",1);drawTab("us",1);drawHc(1);drawCo();draw();paint();
+
 show((location.hash||"").slice(1)||"resumen");
 function editify(){
   document.querySelectorAll("[data-ed]").forEach(function(el){
@@ -245,32 +541,31 @@ function editify(){
   })
 }
 var G="Jorge Luis Collado & Alba Rosario|2;Jorge Collado Rosario|1;Luis Alfonso Collado & Daniela Compres|2;Daniel Bencosme & Elsa Guzmán|2;Cecilia Lulo|1;Guillermo Rojas|1;Antonio Rojas & Nicky Cannahuate|2;Antonio & Guillermo Rojas Rivas|2;Ana Paulina Rojas & acompañante|2;Luis Felipe Rojas & Laly Ferreira|2;Polibio Collado, Yeremy & Polibito|3;Leo Henríquez y Miguelina Fernández|2;David Collado & Oneida Morales|2;David Collado & Argentina Vargas|2;Fabio Collado & Maritza Gómez|2;Tullmig Collado & Gina Baez|2;Nelson Resek y Rodrigo Resek|2;Robledo Del Rosario & Ananelys Henríquez|2;Robert Arias & Ronelly Del Rosario|2;Romi Del Rosario & Reinaldy Camacho|2;Rohanna Del Rosario & Abdiel Aguero|2;Ronel Del Rosario & Karoline Rodríguez|2;Ramón Fermín & Ana Rodríguez|2;Jaqueline Rodríguez|1;Louisanna Rodríguez & Ariel Henríquez|2;Pedro Lizardo & Betania Contreras|2;Pilar Lizardo & Jeury|2;Fernando Compres & Ivette Fernández|2;Gisela Jorge|1;Sarah Jorge|1;Andry Peralta & Madelyn Guzmán|2;José Abel Peralta & Lely Reinoso|2;Nadia Souri & Gregory Pérez|2;Livia Camacho & Norton Pérez|2;Franny Díaz & Ebrain Raposo|2;Amaury Camacho & Awilda Polanco|2;Eduardo Camacho & Valerie Cepeda|2;Juan Carlos Camacho & Máxima Ferreira|2;Genesis Martínez & Jeffry Almonte|2;David Rosa & Olga Santos|2;Sarah Reyes & Alain Mercedes|2;Luis Hernández|1;Sthefany Santos & Winder Cuevas|2;Indira Alba|1;Doris López & acompañante|2;Raphandy Ramos & Romina Rodríguez|2;Rodery Durán|1;José Camacho & Luz González|2;Jesús Perdomo & María Perdomo|2;Fray Luis López|1;Francis Camacho|1;Yovaris Rojas & Yanet Peña|2;Adán Pérez|1;Dilson Fajardo|1;Lisaury Beato|1;Johady & Jorge Rodríguez|2;Alyanary Torres|1;Viviana García & Kelvin Rodríguez|2;Luis Manuel Fajardo|1;Jorge Luis Díaz|1;Junior Guaba & Laura Mata|2;Julissa Francisco & José Manuel Abreu|2;Raylison Ureña|1;Marlon Dilone|1;Laura Guzmán|1;Lewady Olivo|1;Franklyn Ramón Vargas & Patria Martínez|2;Isrrael Vargas & María Guzmán|2;Soraida Vargas, Jael y Tiffany Guzmán|3;Cruz María Camacho & esposo|2;Nani Lantigua|1;Ana Iris Ovalles|1;Wendy Pérez|1;Raydeni Ortega|1;Jennifer Vásquez|1;Graciela Tiburcio|1;Argenys, Iderlina y Adelin Vargas|3";
-var PA=G.split(";").map(function(s,i){
-  var p=s.split("|");
-  return{
-    id:i,name:p[0],n:+p[1]
-  }
-}
-);
 var TB=[[152,100,80,38,0],[232,105,44,44,1],[293,105,44,44,1],[370,105,52,36,0],[330,172,46,46,0],[412,175,44,54,0],[328,237,46,46,0],[130,285,80,38,0],[212,285,44,44,1],[280,285,44,44,1],[365,293,62,36,0],[440,282,44,44,1]];
 var ST=[["Cocina",245,45,72,50],["Bar",72,85,58,40],["Tarima",138,192,92,96,"tar"],["Pista de baile",243,195,100,92],["Baños",58,318,44,32],["Entrada",250,364,92,42]];
-var M={
-  cap:12,a:{
-  }
-}
-,sel=null,cur=null,msg="",bad=false;
+var M={cap:12,a:{}},sel=null,cur=null,msg="",bad=false;
 try{
   var mm=JSON.parse(localStorage.getItem("nrm")||"null");
   if(mm)M=mm
 }
 catch(e){
 }
-if(!M.caps)M.caps=TB.map(function(){
-  return M.cap||12
+if(!M.caps)M.caps=TB.map(function(){return M.cap||12});
+if(!M.a)M.a={};
+var PA;
+if(M.gl&&M.gl.length){
+  PA=M.gl.map(function(x){return{id:x.id,name:x.name,n:x.n}})
 }
-);
-if(!M.nm)M.nm={};
-function nm(p){return M.nm[p.id]||p.name}
+else{
+  PA=G.split(";").map(function(s,i){
+    var p=s.split("|");
+    return{id:i,name:p[0],n:+p[1]}
+  })
+}
+if(!M.nextId)M.nextId=PA.reduce(function(m,p){return Math.max(m,p.id)},0)+1;
+function findP(id){return PA.find(function(p){return p.id===id})}
+function persistGL(){M.gl=PA.map(function(p){return{id:p.id,name:p.name,n:p.n}});sv()}
+function nm(p){return p.name}
 function sv(){
   try{
     localStorage.setItem("nrm",JSON.stringify(M))
@@ -303,10 +598,8 @@ function dm(){
     else pn+=p.n
   }
   );
-  $("stt").innerHTML=[["Sentados",as],["Sin mesa",pn],["Lugares libres",M.caps.reduce(function(a,b){
-    return a+b
-  }
-  ,0)-as],["Total en lista",as+pn]].map(function(x){
+  var totCaps=M.caps.reduce(function(a,b){return a+b},0);
+  $("stt").innerHTML=[["Sillas totales del evento",totCaps],["Sentados",as],["Sin mesa",pn],["Lugares libres",totCaps-as]].map(function(x){
     return '<div class="box"><b>'+x[0]+'</b><span style="font-size:22px;font-weight:500">'+x[1]+'</span></div>'
   }
   ).join("");
@@ -319,41 +612,71 @@ function dm(){
   }
   ).map(function(p){
     var a=p.id in M.a;
-    return '<button class="pr'+(sel===p.id?" sel":"")+(a?" as":"")+'" data-p="'+p.id+'" data-nm="'+p.id+'"><span>'+nm(p)+' ('+p.n+')</span><span>'+(a?"Mesa "+(M.a[p.id]+1):"Sin mesa")+'</span></button>'
+    return '<div class="pr'+(sel===p.id?" sel":"")+(a?" as":"")+'" data-p="'+p.id+'" data-nm="'+p.id+'"><span>'+nm(p)+' ('+p.n+')</span><span style="display:flex;align-items:center;gap:8px">'+(a?"Mesa "+(M.a[p.id]+1):"Sin mesa")+'<button class="rm" data-del="'+p.id+'" aria-label="Eliminar invitado">✕</button></span></div>'
   }
   ).join("");
   [].forEach.call(document.querySelectorAll("#pl [data-nm]"),function(b){
     b.ondblclick=function(e){
       e.preventDefault();e.stopPropagation();
-      var id=+b.dataset.nm,nv=prompt("Editar nombre:",nm(PA[id]));
-      if(nv!==null&&nv.trim()!==""){M.nm[id]=nv.trim();sv();dm()}
+      var id=+b.dataset.nm,p=findP(id);
+      if(!p)return;
+      var nv=prompt("Nombre:",p.name);
+      if(nv===null||nv.trim()==="")return;
+      var cv=prompt("¿Cuántas personas incluye esta invitación?",p.n);
+      if(cv===null)return;
+      var cn=parseInt(cv);
+      if(!(cn>=1))return;
+      p.name=nv.trim();p.n=cn;
+      persistGL();
+      dm()
     }
   }
   );
+  invStats();
   if(cur===null)return;
   var L=PA.filter(function(p){
     return M.a[p.id]===cur
   }
   );
   $("dt").textContent="Mesa "+(cur+1)+" · "+occ(cur)+" de "+M.caps[cur]+" lugares";
-  $("det").innerHTML='<label>Lugares de esta mesa <input type="number" id="tc" min="1" max="30" value="'+M.caps[cur]+'" style="width:70px;font:15px Jost,sans-serif;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)"></label><div style="height:10px"></div>'+(L.length?L.map(function(p){
+  $("det").innerHTML='<label>Lugares de esta mesa <input type="number" id="capin" min="1" max="30" value="'+M.caps[cur]+'" style="width:70px;font:15px Jost,sans-serif;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)"></label><div style="height:10px"></div>'+(L.length?L.map(function(p){
     return '<div class="pr" style="cursor:default"><span>'+nm(p)+' ('+p.n+')</span><button class="rm" data-r="'+p.id+'">Quitar</button></div>'
   }
   ).join(""):'<p class="note">Mesa vacía.</p>');
-  $("tc").onchange=function(){
+  $("capin").onchange=function(){
     M.caps[cur]=Math.max(1,Math.min(30,+this.value||12));
     sv();
     dm()
   }
 }
+function invStats(){
+  var tot=PA.reduce(function(s,p){return s+p.n},0);
+  var as2=0;PA.forEach(function(p){if(p.id in M.a)as2+=p.n});
+  var caps=M.caps.reduce(function(a,b){return a+b},0);
+  $("invres").innerHTML=[["Invitados en la lista",tot],["Mesas",TB.length],["Sillas totales",caps],["Sentados",as2]].map(function(x){
+    return '<div class="box"><b>'+x[0]+'</b><span style="font-size:22px;font-weight:500">'+x[1]+'</span></div>'
+  }
+  ).join("")
+}
 document.addEventListener("click",function(e){
-  var b=e.target.closest("[data-t],[data-p],[data-r]");
+  var b=e.target.closest("[data-t],[data-p],[data-r],[data-del]");
   if(!b||!$("mesas").contains(b))return;
-  if(b.dataset.p!==undefined){
+  if(b.dataset.del!==undefined){
+    var did=+b.dataset.del,gp=findP(did);
+    if(gp&&confirm("¿Eliminar a "+gp.name+" de la lista?")){
+      delete M.a[did];
+      PA=PA.filter(function(p){return p.id!==did});
+      if(sel===did)sel=null;
+      persistGL();
+      msg="Invitado eliminado de la lista.";
+      bad=false
+    }
+  }
+  else if(b.dataset.p!==undefined){
     var id=+b.dataset.p;
     sel=sel===id?null:id;
     bad=false;
-    msg=sel===null?"":"Elegido: "+nm(PA[id])+" ("+PA[id].n+"). Ahora toca una mesa."
+    msg=sel===null?"":"Elegido: "+nm(findP(id))+" ("+findP(id).n+"). Ahora toca una mesa."
   }
   else if(b.dataset.r!==undefined){
     delete M.a[+b.dataset.r];
@@ -364,8 +687,10 @@ document.addEventListener("click",function(e){
   else{
     var t=+b.dataset.t;
     if(sel!==null){
-      var p=PA[sel],free=M.caps[t]-occ(t,sel);
-      if(p.n>free){
+      var p=findP(sel),free=M.caps[t]-occ(t,sel);
+      if(!p){
+      }
+      else if(p.n>free){
         msg="No cabe: la Mesa "+(t+1)+" tiene "+Math.max(free,0)+" lugar(es) libre(s) y "+nm(p)+" son "+p.n+".";
         bad=true
       }
@@ -382,6 +707,19 @@ document.addEventListener("click",function(e){
   dm()
 }
 );
+$("addg").onclick=function(){
+  var n=prompt("Nombre del invitado o de la familia/pareja:","");
+  if(n===null||n.trim()==="")return;
+  var c=prompt("¿Cuántas personas incluye esta invitación?","2");
+  if(c===null)return;
+  var cn=parseInt(c);
+  if(!(cn>=1))cn=1;
+  PA.push({id:M.nextId++,name:n.trim(),n:cn});
+  persistGL();
+  msg="Invitado agregado: "+n.trim()+".";
+  bad=false;
+  dm()
+};
 $("q").oninput=$("fl").onchange=dm;
 $("pre").onclick=function(){
   [0,7].forEach(function(i){
@@ -410,6 +748,67 @@ $("p12").onclick=function(){
 }
 ;
 dm();
+drawInv();
+/* ===== Pestaña Invitados: agregar, editar y quitar (la asignación a mesas sigue en Mesas) ===== */
+function gmsg(x,bad){var m=$("gmsg");m.textContent=x;m.className="note"+(bad?" bad":"")}
+function drawInv(){
+  var q=$("gq").value.toLowerCase(),fl=$("gfl").value;
+  var L=PA.filter(function(p){var a=p.id in M.a;return p.name.toLowerCase().indexOf(q)>-1&&(fl==""||(fl=="s")==a)});
+  $("glist").innerHTML=L.map(function(p){
+    var a=p.id in M.a;
+    return '<div class="grow" data-gid="'+p.id+'"><input class="ci gname" value="'+esc(p.name)+'" placeholder="Nombre" aria-label="Nombre"><input class="ci gnum" type="number" min="1" value="'+p.n+'" aria-label="Personas en la invitación" title="Personas"><span class="gm'+(a?" ok":"")+'">'+(a?"Mesa "+(M.a[p.id]+1):"Sin mesa")+'</span><button type="button" class="rm" data-gdel="'+p.id+'" aria-label="Quitar invitado">✕</button></div>'
+  }).join("");
+  $("gcount").textContent=L.length+" de "+PA.length+" invitaciones";
+  invStats()
+}
+function addGuest(){
+  var n=$("gn").value.trim(),c=parseInt($("gc").value);
+  if(!n){gmsg("Escribe el nombre del invitado.",true);$("gn").focus();return}
+  if(!(c>=1))c=1;
+  PA.push({id:M.nextId++,name:n,n:c});
+  persistGL();
+  $("gn").value="";$("gc").value="2";$("gq").value="";$("gfl").value="";
+  msg="Invitado agregado: "+n+".";bad=false;
+  drawInv();dm();
+  gmsg("Agregado: "+n+" ("+c+(c==1?" persona":" personas")+"). Quedó al final de la lista.",false);
+  var gl=$("glist");gl.scrollTop=gl.scrollHeight;
+  $("gn").focus()
+}
+$("gadd").onclick=addGuest;
+$("gn").addEventListener("keydown",function(e){if(e.key=="Enter"){e.preventDefault();addGuest()}});
+$("gc").addEventListener("keydown",function(e){if(e.key=="Enter"){e.preventDefault();addGuest()}});
+$("gq").oninput=$("gfl").onchange=drawInv;
+$("glist").addEventListener("input",function(e){
+  var el=e.target,row=el.closest(".grow");
+  if(!row)return;
+  var p=findP(+row.dataset.gid);
+  if(!p)return;
+  if(el.classList.contains("gname")){if(el.value.trim()!==""){p.name=el.value.trim();persistGL()}}
+  else if(el.classList.contains("gnum")){var v=parseInt(el.value);if(v>=1){p.n=v;persistGL();invStats()}}
+});
+$("glist").addEventListener("change",function(e){
+  var el=e.target,row=el.closest(".grow");
+  if(!row)return;
+  var p=findP(+row.dataset.gid);
+  if(!p)return;
+  el.value=el.classList.contains("gnum")?p.n:p.name
+});
+$("glist").addEventListener("click",function(e){
+  var b=e.target.closest("[data-gdel]");
+  if(!b)return;
+  var id=+b.dataset.gdel,p=findP(id);
+  if(p&&confirm("¿Quitar a "+p.name+" de la lista de invitados?")){
+    delete M.a[id];
+    PA=PA.filter(function(x){return x.id!==id});
+    if(sel===id)sel=null;
+    persistGL();
+    msg="Invitado eliminado de la lista.";bad=false;
+    drawInv();dm();
+    gmsg("Quitado: "+p.name+".",false)
+  }
+});
+var _show=show;
+show=function(k){_show(k);if(k=="invitados")drawInv();else if(k=="mesas")dm()};
 editify();
 </script>
 </body>
