@@ -46,39 +46,45 @@ ul.t{list-style:none;padding:0;margin:0}ul.t li{padding:6px 0;border-bottom:1px 
 .pr{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin-bottom:5px;font:15px Jost,sans-serif;cursor:pointer}.pr.sel{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc)}.pr.as{color:var(--mut)}
 .tools{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.tools input,.tools select{font:15px Jost,sans-serif;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
 #pl{max-height:520px;overflow-y:auto}.rm{border:1px solid var(--warn);color:var(--warn);background:none;border-radius:99px;padding:2px 10px;cursor:pointer;font:13px Jost,sans-serif}
+[contenteditable="true"]{outline:none;border-radius:6px;transition:background .15s}
+[contenteditable="true"]:hover{background:rgba(168,86,106,.08)}
+[contenteditable="true"]:focus{background:rgba(168,86,106,.14);box-shadow:0 0 0 2px var(--acc)}
+.pr[data-nm],#cl span[data-k2]{cursor:pointer}
+.hint{max-width:900px;margin:0 auto;padding:0 14px;color:var(--mut);font-size:13px}
 </style></head><body>
-<header><h1>Naomi &amp; Raúl</h1><p class="sub">10 de octubre de 2026 · Boda religiosa · Clásico y elegante</p><span class="count" id="cd"></span></header>
+<header><h1 id="h1t" data-ed="h1t">Naomi &amp; Raúl</h1><p class="sub" id="subt" data-ed="subt">10 de octubre de 2026 · Boda religiosa · Clásico y elegante</p><span class="count" id="cd"></span></header>
 <nav role="tablist" id="nav"></nav>
+<p class="hint">Toca cualquier texto para editarlo. En el checklist y en la lista de invitados de Mesas, toca dos veces para renombrar.</p>
 <main>
-<section id="resumen"><h2>Resumen</h2><div class="grid" id="res"></div>
-<h3>Sesiones de fotos</h3><div class="grid">
+<section id="resumen"><h2 id="h2a" data-ed="h2a">Resumen</h2><div class="grid" id="res" data-ed="res"></div>
+<h3 id="h3a" data-ed="h3a">Sesiones de fotos</h3><div class="grid" id="fotos" data-ed="fotos">
 <div class="box"><b>Save the date · sábado 6 de junio</b>Museo Ramón Cáceres. Raúl: camisa blanca, pantalón crema, zapatos marrón. Naomi: vestido blanco. Falta el carro de Isidro. Estado: enviado.</div>
 <div class="box"><b>Pre-boda · Misael Bencosme</b>Cabarete y Sosúa (playa y casa). Novia: vestido blanco y rojo, zapatos crema y dorados, ondas marcadas. Novio: traje negro, camisa de lino blanca y pantalón crema, zapatos negros y marrones.</div></div></section>
 
-<section id="presupuesto"><h2>Presupuesto y pagos</h2><div class="grid" id="tot"></div>
-<h3>Proveedores en RD$</h3><div class="wrap"><table id="tb"></table></div>
-<h3>Proveedores en US$</h3><div class="wrap"><table id="tu"></table></div>
-<p class="note">Con montos en el archivo pero sin claro a qué proveedor pertenecen (revísalos): decoración Rudy Zapata (abono 50%), hora loca Noel Cruceta, souvenirs TEMU, bizcocho y postres, vinil del letrero de Jael (Sauly Graphics), maquillaje del cortejo (Ley Beauty Spot, pendiente $20,000), logística del evento y pago de la iglesia (Samuel, parroquia). Cifras sueltas: $98,000, $40,000, $12,000, $25,000, $5,000, $16,000.</p>
-<p class="note">Presupuesto total con fondo de emergencia: $800,000 – $1,000,000. Menú para 140 personas: ceviche peruano, pastelón de plátano maduro, quiche de maíz, pechuga al limón, cerdo en salsa de champiñones, arroz fiesta o plátano maduro con bacon, pan.</p></section>
+<section id="presupuesto"><h2 id="h2b" data-ed="h2b">Presupuesto y pagos</h2><div class="grid" id="tot" data-ed="tot"></div>
+<h3>Proveedores en RD$</h3><div class="wrap"><table id="tb" data-ed="tb"></table></div>
+<h3>Proveedores en US$</h3><div class="wrap"><table id="tu" data-ed="tu"></table></div>
+<p class="note" id="notep1" data-ed="notep1">Con montos en el archivo pero sin claro a qué proveedor pertenecen (revísalos): decoración Rudy Zapata (abono 50%), hora loca Noel Cruceta, souvenirs TEMU, bizcocho y postres, vinil del letrero de Jael (Sauly Graphics), maquillaje del cortejo (Ley Beauty Spot, pendiente $20,000), logística del evento y pago de la iglesia (Samuel, parroquia). Cifras sueltas: $98,000, $40,000, $12,000, $25,000, $5,000, $16,000.</p>
+<p class="note" id="notep2" data-ed="notep2">Presupuesto total con fondo de emergencia: $800,000 – $1,000,000. Menú para 140 personas: ceviche peruano, pastelón de plátano maduro, quiche de maíz, pechuga al limón, cerdo en salsa de champiñones, arroz fiesta o plátano maduro con bacon, pan.</p></section>
 
-<section id="checklist"><h2>Checklist</h2><p class="prog" id="prog"></p><div id="cl"></div></section>
+<section id="checklist"><h2 id="h2c" data-ed="h2c">Checklist</h2><p class="prog" id="prog"></p><div id="cl"></div></section>
 
-<section id="cortejo"><h2>Cortejo</h2><div id="co"></div><p class="note">Caballeros: trajes negros.</p></section>
+<section id="cortejo"><h2 id="h2d" data-ed="h2d">Cortejo</h2><div id="co" data-ed="co"></div><p class="note" id="notecort" data-ed="notecort">Caballeros: trajes negros.</p></section>
 
-<section id="invitados"><h2>Invitados y mesas</h2><div class="grid">
+<section id="invitados"><h2 id="h2e" data-ed="h2e">Invitados y mesas</h2><div class="grid" id="invres" data-ed="invres">
 <div class="box"><b>Lista estimada</b>144 invitados</div><div class="box"><b>Mesas</b>13 o 14</div><div class="box"><b>Catering contratado</b>140 personas</div><div class="box"><b>Save the date</b>Enviado</div></div>
-<p class="note">La lista completa y la distribución de mesas están en la pestaña Mesas. Grupos: Familia Collado-Guzmán, Familia Vargas-Martínez, Familia Rosario-Rodríguez, y amigos de cada lado. Antes de imprimir invitaciones conviene cerrar un solo total.</p></section>
+<p class="note" id="invnote" data-ed="invnote">La lista completa y la distribución de mesas están en la pestaña Mesas. Grupos: Familia Collado-Guzmán, Familia Vargas-Martínez, Familia Rosario-Rodríguez, y amigos de cada lado. Antes de imprimir invitaciones conviene cerrar un solo total.</p></section>
 
-<section id="luna"><h2>Luna de miel y casa</h2>
-<h3>Punta Cana · 4 noches (lunes a viernes)</h3><p>El Beso Adults Only At Ocean El Faro, todo incluido. Incluye tour de buggies (3 h), una noche de discoteca y casi todos los restaurantes, menos Sakura. Presupuesto de luna de miel: $100,000.</p>
-<ul class="t"><li><b>Lunes</b>Llegada 1:30 p. m., almuerzo en Pez Dama, cena de bienvenida en Blue Moon 7:30 p. m.</li>
+<section id="luna"><h2 id="h2f" data-ed="h2f">Luna de miel y casa</h2>
+<h3 id="h3b" data-ed="h3b">Punta Cana · 4 noches (lunes a viernes)</h3><p id="lunap" data-ed="lunap">El Beso Adults Only At Ocean El Faro, todo incluido. Incluye tour de buggies (3 h), una noche de discoteca y casi todos los restaurantes, menos Sakura. Presupuesto de luna de miel: $100,000.</p>
+<ul class="t" id="itin" data-ed="itin"><li><b>Lunes</b>Llegada 1:30 p. m., almuerzo en Pez Dama, cena de bienvenida en Blue Moon 7:30 p. m.</li>
 <li><b>Martes</b>Buggies 10:00 a. m. a 1:00 p. m., cena en Steak House, discoteca 11:15 p. m.</li>
 <li><b>Miércoles</b>Día de resort, almuerzo en Ocean Burger, cena mexicana en Margarita, piano bar</li>
 <li><b>Jueves</b>Piscina y atardecer, última gran cena en Dolce Vita, Route 66 de postre</li>
 <li><b>Viernes</b>Desayuno final en Pez Dama, check-out</li></ul>
-<h3>Compras de la casa · presupuesto $200,000</h3><div class="wrap"><table id="tc"></table></div>
-<p class="note">Vuelos a Orlando, Florida: $1,166.40. Presupuesto inicial total: $300,000.</p></section>
-<section id="mesas"><h2>Distribución de mesas</h2>
+<h3 id="h3c" data-ed="h3c">Compras de la casa · presupuesto $200,000</h3><div class="wrap"><table id="tc" data-ed="tc"></table></div>
+<p class="note" id="lunanote" data-ed="lunanote">Vuelos a Orlando, Florida: $1,166.40. Presupuesto inicial total: $300,000.</p></section>
+<section id="mesas"><h2 id="h2g" data-ed="h2g">Distribución de mesas</h2>
 <p class="note">1) Toca un invitado de la lista. 2) Toca la mesa en el plano. Si no cabe, te avisa. Toca una mesa sin invitado elegido para ver quién está sentado y cambiar cuántos lugares tiene. Los números de mesa son solo para identificarlas aquí.</p>
 <div class="grid" id="stt"></div><div class="tools"><button class="rm" id="pre" style="border-color:var(--ink);color:var(--ink)">Usar 14 y 10 del plano</button><button class="rm" id="p12" style="border-color:var(--ink);color:var(--ink)">Poner 12 en todas</button></div>
 <div id="msg" aria-live="polite"></div><div class="plan" id="plan"></div>
@@ -159,36 +165,51 @@ var C=[["Fundamentos",[["Acta de confirmación",1],["Cédulas y pasaportes",1],[
 ["Lo que más se olvida",[["Cambio de ropa para después",1],["Cargadores y power bank",0],["Efectivo para propinas",0],["Snacks y agua para novios",0],["Zapatos cómodos para bailar",0],["Lista de contactos de proveedores",0],["Copia impresa del timeline",0],["Persona encargada de regalos",0],["Persona encargada del vestido y velo",0],["Kit de emergencia (aguja, hilo, curitas, pastillas)",0]]]];
 var st={
 }
+,txtOv={
+}
 ;
 try{
-  st=JSON.parse(localStorage.getItem("nr")||"{}")
+  var stx=JSON.parse(localStorage.getItem("nr")||"{}");
+  st=stx.ck||stx;
+  txtOv=stx.tx||{}
 }
 catch(e){
+}
+function svCk(){
+  try{localStorage.setItem("nr",JSON.stringify({ck:st,tx:txtOv}))}catch(e){}
 }
 function draw(){
   var t=0,dn=0,h="";
   C.forEach(function(g,gi){
     h+="<h3>"+g[0]+"</h3>";
     g[1].forEach(function(it,i){
-      var k=gi+"-"+i,v=k in st?st[k]:it[1];
+      var k=gi+"-"+i,v=k in st?st[k]:it[1],tx=k in txtOv?txtOv[k]:it[0];
       t++;
       dn+=v?1:0;
-      h+='<label class="ck'+(v?" d":"")+'"><input type="checkbox" data-k="'+k+'"'+(v?" checked":"")+'><span>'+it[0]+'</span></label>'
+      h+='<label class="ck'+(v?" d":"")+'"><input type="checkbox" data-k="'+k+'"'+(v?" checked":"")+'><span data-k2="'+k+'">'+tx+'</span></label>'
     }
     )
   }
   );
   $("cl").innerHTML=h;
-  $("prog").textContent=dn+" de "+t+" listos ("+Math.round(dn/t*100)+"%). Marca lo que vayas completando.";
+  $("prog").textContent=dn+" de "+t+" listos ("+Math.round(dn/t*100)+"%). Marca lo que vayas completando, o toca dos veces el texto para editarlo.";
   [].forEach.call(document.querySelectorAll("#cl input"),function(c){
     c.onchange=function(){
       st[c.dataset.k]=c.checked;
-      try{
-        localStorage.setItem("nr",JSON.stringify(st))
-      }
-      catch(e){
-      }
+      svCk();
       draw()
+    }
+  }
+  );
+  [].forEach.call(document.querySelectorAll("#cl span[data-k2]"),function(sp){
+    sp.ondblclick=function(e){
+      e.preventDefault();
+      var nv=prompt("Editar:",sp.textContent);
+      if(nv!==null&&nv.trim()!==""){
+        txtOv[sp.dataset.k2]=nv.trim();
+        svCk();
+        draw()
+      }
     }
   }
   )
@@ -209,6 +230,20 @@ $("tc").innerHTML='<thead><tr><th>Artículo comprado o cotizado</th><th class="n
 }
 ,0),"$")+'</td></tr></tfoot><tbody><tr><td colspan="2" class="note">Por comprar: colchón, sábanas, almohadas, cortinas, ollas, vasos, cubiertos, licuadora, airfryer, sofá, televisión y más.</td></tr></tbody>';
 show((location.hash||"").slice(1)||"resumen");
+function editify(){
+  document.querySelectorAll("[data-ed]").forEach(function(el){
+    var k="edh:"+el.dataset.ed,v=null;
+    try{v=localStorage.getItem(k)}catch(e){}
+    if(v!==null)el.innerHTML=v;
+    el.contentEditable="true";
+    el.addEventListener("input",function(){
+      clearTimeout(el._t);
+      el._t=setTimeout(function(){
+        try{localStorage.setItem(k,el.innerHTML)}catch(e){}
+      },500)
+    })
+  })
+}
 var G="Jorge Luis Collado & Alba Rosario|2;Jorge Collado Rosario|1;Luis Alfonso Collado & Daniela Compres|2;Daniel Bencosme & Elsa Guzmán|2;Cecilia Lulo|1;Guillermo Rojas|1;Antonio Rojas & Nicky Cannahuate|2;Antonio & Guillermo Rojas Rivas|2;Ana Paulina Rojas & acompañante|2;Luis Felipe Rojas & Laly Ferreira|2;Polibio Collado, Yeremy & Polibito|3;Leo Henríquez y Miguelina Fernández|2;David Collado & Oneida Morales|2;David Collado & Argentina Vargas|2;Fabio Collado & Maritza Gómez|2;Tullmig Collado & Gina Baez|2;Nelson Resek y Rodrigo Resek|2;Robledo Del Rosario & Ananelys Henríquez|2;Robert Arias & Ronelly Del Rosario|2;Romi Del Rosario & Reinaldy Camacho|2;Rohanna Del Rosario & Abdiel Aguero|2;Ronel Del Rosario & Karoline Rodríguez|2;Ramón Fermín & Ana Rodríguez|2;Jaqueline Rodríguez|1;Louisanna Rodríguez & Ariel Henríquez|2;Pedro Lizardo & Betania Contreras|2;Pilar Lizardo & Jeury|2;Fernando Compres & Ivette Fernández|2;Gisela Jorge|1;Sarah Jorge|1;Andry Peralta & Madelyn Guzmán|2;José Abel Peralta & Lely Reinoso|2;Nadia Souri & Gregory Pérez|2;Livia Camacho & Norton Pérez|2;Franny Díaz & Ebrain Raposo|2;Amaury Camacho & Awilda Polanco|2;Eduardo Camacho & Valerie Cepeda|2;Juan Carlos Camacho & Máxima Ferreira|2;Genesis Martínez & Jeffry Almonte|2;David Rosa & Olga Santos|2;Sarah Reyes & Alain Mercedes|2;Luis Hernández|1;Sthefany Santos & Winder Cuevas|2;Indira Alba|1;Doris López & acompañante|2;Raphandy Ramos & Romina Rodríguez|2;Rodery Durán|1;José Camacho & Luz González|2;Jesús Perdomo & María Perdomo|2;Fray Luis López|1;Francis Camacho|1;Yovaris Rojas & Yanet Peña|2;Adán Pérez|1;Dilson Fajardo|1;Lisaury Beato|1;Johady & Jorge Rodríguez|2;Alyanary Torres|1;Viviana García & Kelvin Rodríguez|2;Luis Manuel Fajardo|1;Jorge Luis Díaz|1;Junior Guaba & Laura Mata|2;Julissa Francisco & José Manuel Abreu|2;Raylison Ureña|1;Marlon Dilone|1;Laura Guzmán|1;Lewady Olivo|1;Franklyn Ramón Vargas & Patria Martínez|2;Isrrael Vargas & María Guzmán|2;Soraida Vargas, Jael y Tiffany Guzmán|3;Cruz María Camacho & esposo|2;Nani Lantigua|1;Ana Iris Ovalles|1;Wendy Pérez|1;Raydeni Ortega|1;Jennifer Vásquez|1;Graciela Tiburcio|1;Argenys, Iderlina y Adelin Vargas|3";
 var PA=G.split(";").map(function(s,i){
   var p=s.split("|");
@@ -234,6 +269,8 @@ if(!M.caps)M.caps=TB.map(function(){
   return M.cap||12
 }
 );
+if(!M.nm)M.nm={};
+function nm(p){return M.nm[p.id]||p.name}
 function sv(){
   try{
     localStorage.setItem("nrm",JSON.stringify(M))
@@ -278,13 +315,21 @@ function dm(){
   var q=$("q").value.toLowerCase(),fl=$("fl").value;
   $("pl").innerHTML=PA.filter(function(p){
     var a=p.id in M.a;
-    return p.name.toLowerCase().indexOf(q)>-1&&(fl==""||(fl=="s")==a)
+    return nm(p).toLowerCase().indexOf(q)>-1&&(fl==""||(fl=="s")==a)
   }
   ).map(function(p){
     var a=p.id in M.a;
-    return '<button class="pr'+(sel===p.id?" sel":"")+(a?" as":"")+'" data-p="'+p.id+'"><span>'+p.name+' ('+p.n+')</span><span>'+(a?"Mesa "+(M.a[p.id]+1):"Sin mesa")+'</span></button>'
+    return '<button class="pr'+(sel===p.id?" sel":"")+(a?" as":"")+'" data-p="'+p.id+'" data-nm="'+p.id+'"><span>'+nm(p)+' ('+p.n+')</span><span>'+(a?"Mesa "+(M.a[p.id]+1):"Sin mesa")+'</span></button>'
   }
   ).join("");
+  [].forEach.call(document.querySelectorAll("#pl [data-nm]"),function(b){
+    b.ondblclick=function(e){
+      e.preventDefault();e.stopPropagation();
+      var id=+b.dataset.nm,nv=prompt("Editar nombre:",nm(PA[id]));
+      if(nv!==null&&nv.trim()!==""){M.nm[id]=nv.trim();sv();dm()}
+    }
+  }
+  );
   if(cur===null)return;
   var L=PA.filter(function(p){
     return M.a[p.id]===cur
@@ -292,7 +337,7 @@ function dm(){
   );
   $("dt").textContent="Mesa "+(cur+1)+" · "+occ(cur)+" de "+M.caps[cur]+" lugares";
   $("det").innerHTML='<label>Lugares de esta mesa <input type="number" id="tc" min="1" max="30" value="'+M.caps[cur]+'" style="width:70px;font:15px Jost,sans-serif;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)"></label><div style="height:10px"></div>'+(L.length?L.map(function(p){
-    return '<div class="pr" style="cursor:default"><span>'+p.name+' ('+p.n+')</span><button class="rm" data-r="'+p.id+'">Quitar</button></div>'
+    return '<div class="pr" style="cursor:default"><span>'+nm(p)+' ('+p.n+')</span><button class="rm" data-r="'+p.id+'">Quitar</button></div>'
   }
   ).join(""):'<p class="note">Mesa vacía.</p>');
   $("tc").onchange=function(){
@@ -308,7 +353,7 @@ document.addEventListener("click",function(e){
     var id=+b.dataset.p;
     sel=sel===id?null:id;
     bad=false;
-    msg=sel===null?"":"Elegido: "+PA[id].name+" ("+PA[id].n+"). Ahora toca una mesa."
+    msg=sel===null?"":"Elegido: "+nm(PA[id])+" ("+PA[id].n+"). Ahora toca una mesa."
   }
   else if(b.dataset.r!==undefined){
     delete M.a[+b.dataset.r];
@@ -321,13 +366,13 @@ document.addEventListener("click",function(e){
     if(sel!==null){
       var p=PA[sel],free=M.caps[t]-occ(t,sel);
       if(p.n>free){
-        msg="No cabe: la Mesa "+(t+1)+" tiene "+Math.max(free,0)+" lugar(es) libre(s) y "+p.name+" son "+p.n+".";
+        msg="No cabe: la Mesa "+(t+1)+" tiene "+Math.max(free,0)+" lugar(es) libre(s) y "+nm(p)+" son "+p.n+".";
         bad=true
       }
       else{
         M.a[sel]=t;
         sv();
-        msg=p.name+" → Mesa "+(t+1);
+        msg=nm(p)+" → Mesa "+(t+1);
         bad=false;
         sel=null
       }
@@ -365,6 +410,7 @@ $("p12").onclick=function(){
 }
 ;
 dm();
+editify();
 </script>
 </body>
 </html>
